@@ -22,5 +22,4 @@ public class contact {
     private String email;
     private String message;
 
-
 }
