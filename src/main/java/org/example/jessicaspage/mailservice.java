@@ -16,10 +16,10 @@ import java.util.Collections;
 @Service
 public class mailservice {
 
-    @Value("${brevo.api.key}")
+    @Value("${BREVO_API_KEY}")
     private String apiKey;
 
-    @Value("${brevo.mail}")
+    @Value("${BREVO_MAIL}")
     private String myemail;
 
     public ResponseEntity<String> contactForm(@RequestBody contact contact) {
