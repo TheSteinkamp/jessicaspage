@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
@@ -19,6 +20,8 @@ class controllerTests {
 
     @Mock
     private contactrepository testrepository;
+    @Mock
+    private mailservice testmailservice;
     @InjectMocks
     private contactcontroller testcontroller;
 
@@ -27,12 +30,13 @@ class controllerTests {
     @Test
     public void savecontactTest() throws Exception {
         when(testrepository.save(any(contact.class))).thenReturn(mockContact);
-
+        when(testmailservice.contactForm(any(contact.class))).thenReturn(new ResponseEntity<>("Message recieved", HttpStatus.OK));
         ResponseEntity<String> response = testcontroller.contactForm(mockContact);
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("Message recieved", response.getBody());
         verify(testrepository, times(1)).save(mockContact);
+        verify(testmailservice, times(1)).contactForm(mockContact);
     }
 
     @Test
