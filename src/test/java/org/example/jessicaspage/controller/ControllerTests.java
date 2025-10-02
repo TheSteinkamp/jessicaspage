@@ -1,5 +1,8 @@
-package org.example.jessicaspage;
+package org.example.jessicaspage.controller;
 
+import org.example.jessicaspage.model.Contact;
+import org.example.jessicaspage.repository.Contactrepository;
+import org.example.jessicaspage.service.Mailservice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,21 +19,21 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-class controllerTests {
+class ControllerTests {
 
     @Mock
-    private contactrepository testrepository;
+    private Contactrepository testrepository;
     @Mock
-    private mailservice testmailservice;
+    private Mailservice testmailservice;
     @InjectMocks
-    private contactcontroller testcontroller;
+    private Contactcontroller testcontroller;
 
-    contact mockContact = new contact(1L, "testUser", "test@test.se", "testmessage");
+    Contact mockContact = new Contact(1L, "testUser", "test@test.se", "testmessage");
 
     @Test
     public void savecontactTest() throws Exception {
-        when(testrepository.save(any(contact.class))).thenReturn(mockContact);
-        when(testmailservice.contactForm(any(contact.class))).thenReturn(new ResponseEntity<>("Message recieved", HttpStatus.OK));
+        when(testrepository.save(any(Contact.class))).thenReturn(mockContact);
+        when(testmailservice.contactForm(any(Contact.class))).thenReturn(new ResponseEntity<>("Message recieved", HttpStatus.OK));
         ResponseEntity<String> response = testcontroller.contactForm(mockContact);
 
         assertEquals(200, response.getStatusCodeValue());

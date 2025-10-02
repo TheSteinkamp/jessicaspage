@@ -1,4 +1,4 @@
-package org.example.jessicaspage;
+package org.example.jessicaspage.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class contact {
+public class Contact {
 
     @Id
     @GeneratedValue
