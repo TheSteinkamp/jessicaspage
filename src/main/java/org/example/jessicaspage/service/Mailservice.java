@@ -1,4 +1,4 @@
-package org.example.jessicaspage;
+package org.example.jessicaspage.service;
 
 import brevo.ApiClient;
 import brevo.Configuration;
@@ -7,6 +7,7 @@ import brevoModel.CreateSmtpEmail;
 import brevoModel.SendSmtpEmail;
 import brevoModel.SendSmtpEmailSender;
 import brevoModel.SendSmtpEmailTo;
+import org.example.jessicaspage.model.Contact;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Collections;
 
 @Service
-public class mailservice {
+public class Mailservice {
 
     @Value("${BREVO_API_KEY}")
     private String apiKey;
@@ -22,7 +23,7 @@ public class mailservice {
     @Value("${BREVO_MAIL}")
     private String myemail;
 
-    public ResponseEntity<String> contactForm(@RequestBody contact contact) {
+    public ResponseEntity<String> contactForm(@RequestBody Contact contact) {
         try{
             ApiClient defaultClient = Configuration.getDefaultApiClient();
             defaultClient.setApiKey(apiKey);
