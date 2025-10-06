@@ -11,12 +11,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-
 
 @ExtendWith(MockitoExtension.class)
 class ControllerTests {
@@ -43,7 +41,7 @@ class ControllerTests {
     }
 
     @Test
-    void contactForm_ShouldReturn500_WhenSaveThrowsException() {
+    void contactFormErrorTest() {
         when(testrepository.save(mockContact)).thenThrow(new RuntimeException("DB error"));
 
         ResponseEntity<String> response = testcontroller.contactForm(mockContact);
@@ -52,5 +50,4 @@ class ControllerTests {
         assertTrue(response.getBody().contains("Error: DB error"));
         verify(testrepository, times(1)).save(mockContact);
     }
-
 }

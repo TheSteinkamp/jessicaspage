@@ -26,7 +26,6 @@ public class Contactcontroller {
         this.validationService = new ValidationService();
     }
 
-
     @PostMapping("/contact")
     public ResponseEntity<String> contactForm(@RequestBody Contact contact) {
 
